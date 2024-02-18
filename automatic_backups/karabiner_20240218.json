@@ -18,7 +18,7 @@
                 },
                 "rules": [
                     {
-                        "description": "CAPS_LOCK => hyper | tab (if alone)",
+                        "description": "CAPS_LOCK to HYPER (SHIFT+COMMAND+OPTION+CONTROL) or TAB (If Alone)",
                         "manipulators": [
                             {
                                 "from": {
@@ -45,7 +45,7 @@
                         ]
                     },
                     {
-                        "description": "TAB => hyper_se | CTRL+TAB (if alone)",
+                        "description": "hyperSE (secondary hyper key) triggered on TAB and hold; alone => navigate to right open tab (Chrome/Finder/VSCode/Safari)",
                         "manipulators": [
                             {
                                 "from": {
@@ -80,7 +80,131 @@
                         ]
                     },
                     {
-                        "description": "hyper + SPACEBAR => trigger Alfred",
+                        "description": "hyperSE + LEFT_SHIFT == Navigate to Left Open Tab",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.google.Chrome",
+                                            "^com.apple.Safari",
+                                            "^com.apple.finder",
+                                            "com.microsoft.VSCode"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "hyperSE",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_shift"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "LEFT_SHIFT + RIGHT_SHIFT to Chrome > Search open tabs",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "right_shift",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "right_shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper + RIGHT_SHIFT == Escape",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "right_shift",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "right_shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hold down ESCAPE to see large Digi Clock",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "escape"
+                                },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
+                                },
+                                "to_after_key_up": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "to_if_alone": {
+                                    "key_code": "escape"
+                                },
+                                "to_if_held_down": {
+                                    "key_code": "quote",
+                                    "modifiers": [
+                                        "left_control"
+                                    ]
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper + SPACEBAR == Toggle Alfred",
                         "manipulators": [
                             {
                                 "from": {
@@ -107,7 +231,7 @@
                         ]
                     },
                     {
-                        "description": "[finder] hyper + ' | RETURN | G => back | fwd | goto folder",
+                        "description": "Finder > Use Hyper + ENTER/quote as Open/Back",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -168,7 +292,51 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Finder > Use Hyper + X for Cut and Paste",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com.apple.finder"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    },
+                                    {
+                                        "shell_command": "afplay ~/Library/Sounds/cut_sound_1.aiff"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Finder > Hyper + G == Go to Folder",
+                        "manipulators": [
                             {
                                 "conditions": [
                                     {
@@ -203,30 +371,24 @@
                         ]
                     },
                     {
-                        "description": "[chrome] hyper + T => new tab; ⌘ + ` => reopen last closed tab",
+                        "description": "hyperSE + J/K => Mission Control",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": [
-                                            "com.google.Chrome",
-                                            "^com.apple.Safari"
-                                        ],
-                                        "type": "frontmost_application_if"
+                                        "name": "hyperSE",
+                                        "type": "variable_if",
+                                        "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "grave_accent_and_tilde",
-                                    "modifiers": {
-                                        "mandatory": "command"
-                                    }
+                                    "key_code": "j"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "t",
+                                        "key_code": "up_arrow",
                                         "modifiers": [
-                                            "left_command",
-                                            "left_shift"
+                                            "left_control"
                                         ]
                                     }
                                 ],
@@ -235,9 +397,36 @@
                             {
                                 "conditions": [
                                     {
+                                        "name": "hyperSE",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Chrome/Safari/Finder > Use Hyper + T to open new tab",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
                                         "bundle_identifiers": [
                                             "com.google.Chrome",
-                                            "^com.apple.Safari"
+                                            "^com.apple.Safari",
+                                            "^com.apple.finder"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -266,8 +455,71 @@
                         ]
                     },
                     {
-                        "description": "[preview] hyper + T | G => text box | goto page; ⌘ + M => highlight",
+                        "description": "Chrome/Safari > Use cmd + ` to reopen last closed browser tab",
                         "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.google.Chrome",
+                                            "^com.apple.Safari"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "mandatory": "command"
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "t",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Preview > Hyper + A/T/G == Toggle Markup Toolbar/Text Box/Go to Page; ⌘ + M == Highlight",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Preview"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
                             {
                                 "conditions": [
                                     {
@@ -361,7 +613,43 @@
                         ]
                     },
                     {
-                        "description": "hyper + X | C | V => cut | copy | paste",
+                        "description": "Notes > Hyper + 1 == Show/Hide Folders",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "com.apple.Notes"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "1",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "s",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper + X/C/V == <global> Cut/Copy/Paste",
                         "manipulators": [
                             {
                                 "from": {
@@ -432,7 +720,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + [HJKL] == left | down | up | right",
+                        "description": "Hyper + H/J/K/L == vim Navigation",
                         "manipulators": [
                             {
                                 "from": {
@@ -513,7 +801,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + ' | RETURN => move cursor to start | end of line (also, prev | next browser page)",
+                        "description": "Hyper + quote/ENTER == Place cursor at beginning/end of line (+fwd/bk in browser history)",
                         "manipulators": [
                             {
                                 "from": {
@@ -562,17 +850,14 @@
                         ]
                     },
                     {
-                        "description": "hyper + A | F => move cursor to start | end of word",
+                        "description": "Ctrl + H/L moves Forward/Backward by 1 word",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "a",
+                                    "key_code": "h",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_shift",
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
+                                            "left_control"
                                         ]
                                     }
                                 },
@@ -588,13 +873,10 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "f",
+                                    "key_code": "l",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_shift",
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
+                                            "left_control"
                                         ]
                                     }
                                 },
@@ -611,7 +893,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + [YUIOPQR] => text selection",
+                        "description": "Hyper + Y/U/I/O/P/Q/R == Selection Shortcuts",
                         "manipulators": [
                             {
                                 "from": {
@@ -779,7 +1061,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + DELETE | BACKSLASH => undo | redo",
+                        "description": "Hyper + BACKSPACE/BACKSLASH == Undo/Redo",
                         "manipulators": [
                             {
                                 "from": {
@@ -829,7 +1111,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + [/.,] == find | next | prev",
+                        "description": "Hyper + '/'/./, == Find/Find Next/Find Prev",
                         "manipulators": [
                             {
                                 "from": {
@@ -901,7 +1183,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + E | D | M => volume control",
+                        "description": "Hyper + E/D/M == Volume Control",
                         "manipulators": [
                             {
                                 "from": {
@@ -963,62 +1245,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + ESC => lock screen",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "escape",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "left_shift",
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "q",
-                                        "modifiers": [
-                                            "left_command",
-                                            "left_control"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "hyper_se+ Q => goto prev tab",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "hyperSE",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "q"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": [
-                                            "left_control",
-                                            "left_shift"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "hyper_se + W => toggle full screen",
+                        "description": "hyperSE + W == Toggle Full Screen",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1045,7 +1272,152 @@
                         ]
                     },
                     {
-                        "description": "hyper_se + H | L | J => [mission control] prev | next | spaces",
+                        "description": "Hyper + UP/DOWN/LEFT/RIGHT/HOME/END == Magnet Window Resizing",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "down_arrow",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_option",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "up_arrow",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_option",
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "home",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "end",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "hyperSE + H/L == prev/next desktop",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1088,22 +1460,29 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Hyper + ESC == Lock Screen",
+                        "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "name": "hyperSE",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
-                                    "key_code": "j"
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "up_arrow",
+                                        "key_code": "q",
                                         "modifiers": [
+                                            "left_command",
                                             "left_control"
                                         ]
                                     }
@@ -1118,9 +1497,7 @@
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 591,
@@ -1128,21 +1505,13 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 832,
@@ -1150,21 +1519,13 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 34304,
@@ -1172,21 +1533,13 @@
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 45930,
@@ -1194,12 +1547,6 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [
                         {
                             "from": {
@@ -1227,9 +1574,7 @@
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 641,
@@ -1237,21 +1582,13 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": false,
                         "is_pointing_device": true,
                         "product_id": 641,
@@ -1259,21 +1596,13 @@
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": false,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 0,
@@ -1281,21 +1610,13 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": false,
                         "is_pointing_device": true,
                         "product_id": 0,
@@ -1303,21 +1624,13 @@
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": false,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": false,
                         "is_pointing_device": true,
                         "product_id": 45108,
@@ -1325,21 +1638,13 @@
                     },
                     "ignore": true,
                     "manipulate_caps_lock_led": false,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
                     "fn_function_keys": [],
-                    "game_pad_swap_sticks": false,
                     "identifiers": {
-                        "is_game_pad": false,
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 666,
@@ -1347,12 +1652,6 @@
                     },
                     "ignore": false,
                     "manipulate_caps_lock_led": true,
-                    "mouse_flip_horizontal_wheel": false,
-                    "mouse_flip_vertical_wheel": false,
-                    "mouse_flip_x": false,
-                    "mouse_flip_y": false,
-                    "mouse_swap_wheels": false,
-                    "mouse_swap_xy": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 }
