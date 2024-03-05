@@ -80,7 +80,7 @@
                         ]
                     },
                     {
-                        "description": "hyper + SPACEBAR => trigger Alfred",
+                        "description": "hyper + SPACEBAR => invoke Alfred",
                         "manipulators": [
                             {
                                 "from": {
@@ -991,7 +991,7 @@
                         ]
                     },
                     {
-                        "description": "hyper_se+ Q => goto prev tab",
+                        "description": "hyper_se + Q => goto prev tab",
                         "manipulators": [
                             {
                                 "conditions": [
