@@ -107,7 +107,7 @@
                         ]
                     },
                     {
-                        "description": "[finder] hyper + [YOG] => go back | open | goto folder",
+                        "description": "[finder] hyper + ' | RETURN | G => back | fwd | goto folder",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -119,7 +119,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "o",
+                                    "key_code": "return_or_enter",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -149,7 +149,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "y",
+                                    "key_code": "quote",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -361,6 +361,77 @@
                         ]
                     },
                     {
+                        "description": "hyper + X | C | V => cut | copy | paste",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "x",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "v",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "hyper + [HJKL] == left | down | up | right",
                         "manipulators": [
                             {
@@ -442,11 +513,11 @@
                         ]
                     },
                     {
-                        "description": "hyper + [14] => move cursor to start | end of line (also, prev | next browser page)",
+                        "description": "hyper + ' | RETURN => move cursor to start | end of line (also, prev | next browser page)",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "4",
+                                    "key_code": "return_or_enter",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -468,7 +539,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "1",
+                                    "key_code": "quote",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -491,11 +562,11 @@
                         ]
                     },
                     {
-                        "description": "hyper + ' | RETURN => move cursor to start | end of word",
+                        "description": "hyper + A | F => move cursor to start | end of word",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "quote",
+                                    "key_code": "a",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -517,7 +588,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "return_or_enter",
+                                    "key_code": "f",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -974,7 +1045,7 @@
                         ]
                     },
                     {
-                        "description": "hyper_se + H | L | J => [mission control] prev | next | show spaces",
+                        "description": "hyper_se + H | L | J => [mission control] prev | next | spaces",
                         "manipulators": [
                             {
                                 "conditions": [
