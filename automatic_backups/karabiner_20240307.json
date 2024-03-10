@@ -107,7 +107,7 @@
                         ]
                     },
                     {
-                        "description": "[finder] hyper + [/OG] => go back | open | goto folder",
+                        "description": "[finder] hyper + [YOG] => go back | open | goto folder",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -149,7 +149,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "slash",
+                                    "key_code": "y",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -442,11 +442,11 @@
                         ]
                     },
                     {
-                        "description": "hyper + ' | RETURN => move cursor to start | end of line (also, prev | next browser page)",
+                        "description": "hyper + [14] => move cursor to start | end of line (also, prev | next browser page)",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "return_or_enter",
+                                    "key_code": "4",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -468,7 +468,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "quote",
+                                    "key_code": "1",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -491,11 +491,11 @@
                         ]
                     },
                     {
-                        "description": "hyper + [<>] => move cursor to start | end of word",
+                        "description": "hyper + ' | RETURN => move cursor to start | end of word",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "comma",
+                                    "key_code": "quote",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -517,7 +517,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "period",
+                                    "key_code": "return_or_enter",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
@@ -747,6 +747,78 @@
                                 "to": [
                                     {
                                         "key_code": "z",
+                                        "modifiers": [
+                                            "left_command",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "hyper + [/.,] == find | next | prev",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "g",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "g",
                                         "modifiers": [
                                             "left_command",
                                             "left_shift"
