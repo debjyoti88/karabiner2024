@@ -149,7 +149,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "open_bracket",
+                                    "key_code": "slash",
                                     "modifiers": {
                                         "mandatory": [
                                             "left_shift",
