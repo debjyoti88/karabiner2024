@@ -266,7 +266,7 @@
                         ]
                     },
                     {
-                        "description": "[messages] hyper + 1 | 5 => show all messages | trash",
+                        "description": "[messages] hyper + 4 | 5 => show all messages | trash",
                         "manipulators": [
                             {
                                 "conditions": [
