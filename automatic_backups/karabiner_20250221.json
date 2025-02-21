@@ -137,11 +137,11 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_semicolon :: f_select_line",
+                        "description": "✴️ + k_spacebar :: f_select_line",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "semicolon",
+                                    "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
@@ -302,7 +302,7 @@
                     "simple_modifications": [
                         {
                             "from": { "key_code": "delete_forward" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
+                            "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
                         },
                         {
                             "from": { "key_code": "right_option" },
