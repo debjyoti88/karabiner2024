@@ -60,13 +60,39 @@
                         ]
                     },
                     {
+                        "description": "✴️ + k_period :: < disable sysdiagnose >",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "vk_none" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_comma :: < disable tailspin >",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "vk_none" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "k_esc (held_down) :: f_lock_screen",
                         "manipulators": [
                             {
                                 "from": { "key_code": "escape" },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 250,
-                                    "basic.to_if_held_down_threshold_milliseconds": 250
+                                    "basic.to_if_alone_timeout_milliseconds": 350,
+                                    "basic.to_if_held_down_threshold_milliseconds": 350
                                 },
                                 "to_if_alone": [{ "key_code": "escape" }],
                                 "to_if_held_down": [
@@ -80,7 +106,7 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_[hjkl] :: f_move_text_cursor",
+                        "description": "✴️ + k_[hjkl] :: f_move_text_cursor_char",
                         "manipulators": [
                             {
                                 "from": {
@@ -170,24 +196,11 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_f :: f_backspace",
+                        "description": "✴️ + k_f :: f_delete_active_word",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "f",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "delete_or_backspace" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_m :: f_delete_active_word",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "m",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
@@ -388,7 +401,19 @@
                     "simple_modifications": [
                         {
                             "from": { "key_code": "delete_forward" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
+                            "to": [{ "consumer_key_code": "volume_increment" }]
+                        },
+                        {
+                            "from": { "key_code": "end" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_down" }]
+                        },
+                        {
+                            "from": { "key_code": "home" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_up" }]
+                        },
+                        {
+                            "from": { "key_code": "insert" },
+                            "to": [{ "consumer_key_code": "volume_decrement" }]
                         },
                         {
                             "from": { "key_code": "right_option" },
