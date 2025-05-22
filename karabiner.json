@@ -60,32 +60,6 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_period :: < disable sysdiagnose >",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "period",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "vk_none" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_comma :: < disable tailspin >",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "comma",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "vk_none" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "k_esc (held_down) :: f_lock_screen",
                         "manipulators": [
                             {
@@ -101,6 +75,27 @@
                                         "modifiers": ["left_command", "left_control"]
                                     }
                                 ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_[<>] :: f_volume_control",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "volume_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "volume_decrement" }],
                                 "type": "basic"
                             }
                         ]
@@ -214,76 +209,6 @@
                                     },
                                     { "key_code": "delete_or_backspace" }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_t :: f_bold_text",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "t",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_[we] :: f_undo_redo",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "b",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "b",
-                                        "modifiers": ["left_command", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_[sd] :: f_volume_control",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "volume_increment" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "volume_decrement" }],
                                 "type": "basic"
                             }
                         ]
