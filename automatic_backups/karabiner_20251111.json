@@ -60,28 +60,13 @@
                         ]
                     },
                     {
-                        "description": "k_insert :: ⌘ + ⌃",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "insert" },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "k_esc (held_down) :: f_lock_screen",
                         "manipulators": [
                             {
                                 "from": { "key_code": "escape" },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 250,
-                                    "basic.to_if_held_down_threshold_milliseconds": 250
+                                    "basic.to_if_alone_timeout_milliseconds": 350,
+                                    "basic.to_if_held_down_threshold_milliseconds": 350
                                 },
                                 "to_if_alone": [{ "key_code": "escape" }],
                                 "to_if_held_down": [
@@ -95,39 +80,28 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_['⏎] :: f_move_text_cursor_line",
-                        "enabled": false,
+                        "description": "✴️ + k_[,.] :: f_null",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "quote",
+                                    "key_code": "period",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "vk_none" }],
                                 "type": "basic"
                             },
                             {
                                 "from": {
-                                    "key_code": "return_or_enter",
+                                    "key_code": "comma",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "vk_none" }],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "✴️ + k_[hjkl] :: f_move_text_cursor_char",
+                        "description": "✴️ + k_[hjkl] :: f_move_text_cursor",
                         "manipulators": [
                             {
                                 "from": {
@@ -164,7 +138,7 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_[qr] :: f_select_word",
+                        "description": "✴️ + k_[qr] :: f_select_prev_next_word",
                         "manipulators": [
                             {
                                 "from": {
@@ -217,24 +191,11 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_f :: f_backspace",
+                        "description": "✴️ + k_f :: f_delete_active_word",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "f",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "delete_or_backspace" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_m :: f_delete_active_word",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "m",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
@@ -253,25 +214,7 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_t :: f_bold_text",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "t",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_[asd] :: f_volume_control",
+                        "description": "✴️ + k_[sd] :: f_volume_control",
                         "manipulators": [
                             {
                                 "from": {
@@ -288,29 +231,97 @@
                                 },
                                 "to": [{ "key_code": "volume_decrement" }],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_a :: f_⌘⇧A",
+                        "manipulators": [
                             {
                                 "from": {
                                     "key_code": "a",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
-                                "to": [{ "key_code": "mute" }],
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "✴️ + k_b :: f_redo",
+                        "description": "✴️ + k_t :: f_⌘⇧B",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "b",
+                                    "key_code": "t",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
                                     {
-                                        "key_code": "b",
+                                        "key_code": "t",
                                         "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_e :: f_⌘⇧F",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_/ :: f_⌥/",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "🟡 + k_w :: f_minimize_window",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "w" },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["left_command", "left_control"]
                                     }
                                 ],
                                 "type": "basic"
@@ -377,6 +388,80 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "🟡 + k_[123] :: f_show_hide_editor_panels_in_bear",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "net.shinyfrog.bear"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "1" },
+                                "to": [
+                                    {
+                                        "key_code": "3",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "net.shinyfrog.bear"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "2" },
+                                "to": [
+                                    {
+                                        "key_code": "2",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "bundle_identifiers": [
+                                            "net.shinyfrog.bear"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": { "key_code": "3" },
+                                "to": [
+                                    {
+                                        "key_code": "1",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -408,13 +493,42 @@
                     "simple_modifications": [
                         {
                             "from": { "key_code": "delete_forward" },
-                            "to": [{ "apple_vendor_keyboard_key_code": "launchpad" }]
+                            "to": [{ "consumer_key_code": "volume_increment" }]
+                        },
+                        {
+                            "from": { "key_code": "end" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_down" }]
+                        },
+                        {
+                            "from": { "key_code": "home" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_up" }]
+                        },
+                        {
+                            "from": { "key_code": "insert" },
+                            "to": [{ "consumer_key_code": "volume_decrement" }]
                         },
                         {
                             "from": { "key_code": "right_option" },
                             "to": [{ "key_code": "grave_accent_and_tilde" }]
                         }
                     ]
+                },
+                {
+                    "fn_function_keys": [
+                        {
+                            "from": { "key_code": "f1" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_down" }]
+                        },
+                        {
+                            "from": { "key_code": "f2" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_up" }]
+                        }
+                    ],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 800,
+                        "vendor_id": 76
+                    }
                 }
             ],
             "fn_function_keys": [

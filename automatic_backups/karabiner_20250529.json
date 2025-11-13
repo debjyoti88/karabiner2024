@@ -3,9 +3,14 @@
     "profiles": [
         {
             "complex_modifications": {
+                "parameters": {
+                    "basic.to_delayed_action_delay_milliseconds": 250,
+                    "basic.to_if_alone_timeout_milliseconds": 250,
+                    "basic.to_if_held_down_threshold_milliseconds": 250
+                },
                 "rules": [
                     {
-                        "description": "k_caps_lock :: f_hyper | (if alone) f_tab",
+                        "description": "k_caps_lock :: ✴️ | (alone) f_tab",
                         "manipulators": [
                             {
                                 "from": {
@@ -24,33 +29,7 @@
                         ]
                     },
                     {
-                        "description": "k_tab :: f_new_tab | (if held down) f_reopen_last_tab",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "tab" },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 250,
-                                    "basic.to_if_held_down_threshold_milliseconds": 250
-                                },
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "f",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "f",
-                                        "modifiers": ["left_command", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "k_tab :: f_win_mgmt | (if alone) f_next_tab",
-                        "enabled": false,
+                        "description": "k_tab :: 🟡 | (alone) f_next_tab",
                         "manipulators": [
                             {
                                 "from": { "key_code": "tab" },
@@ -81,13 +60,13 @@
                         ]
                     },
                     {
-                        "description": "k_esc (if held down) :: f_lock_screen",
+                        "description": "k_esc (held_down) :: f_lock_screen",
                         "manipulators": [
                             {
                                 "from": { "key_code": "escape" },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 250,
-                                    "basic.to_if_held_down_threshold_milliseconds": 250
+                                    "basic.to_if_alone_timeout_milliseconds": 350,
+                                    "basic.to_if_held_down_threshold_milliseconds": 350
                                 },
                                 "to_if_alone": [{ "key_code": "escape" }],
                                 "to_if_held_down": [
@@ -101,25 +80,28 @@
                         ]
                     },
                     {
-                        "description": "f_hyper + k_space :: call app_alfred",
+                        "description": "✴️ + k_[,.] :: <disable sysdiagnose>",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "period",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "spacebar",
-                                        "modifiers": ["left_option"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "vk_none" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "vk_none" }],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "f_hyper + k_hjkl :: f_move_cursor",
+                        "description": "✴️ + k_[hjkl] :: f_move_text_cursor_char",
                         "manipulators": [
                             {
                                 "from": {
@@ -156,56 +138,8 @@
                         ]
                     },
                     {
-                        "description": "f_hyper + k_'quote'return :: f_move_cursor_line",
+                        "description": "✴️ + k_[qr] :: f_select_word",
                         "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "return_or_enter",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["left_command"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "f_hyper + k_pqr :: f_text_selection",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "p",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["left_command"]
-                                    },
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["left_command", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
                             {
                                 "from": {
                                     "key_code": "q",
@@ -235,24 +169,33 @@
                         ]
                     },
                     {
-                        "description": "f_hyper + k_f :: f_backspace",
+                        "description": "✴️ + k_semicolon :: f_select_line",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "f",
+                                    "key_code": "semicolon",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
-                                "to": [{ "key_code": "delete_or_backspace" }],
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_command"]
+                                    },
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "f_hyper + k_m :: f_delete_active_word",
+                        "description": "✴️ + k_f :: f_delete_active_word",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "m",
+                                    "key_code": "f",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
@@ -271,13 +214,38 @@
                         ]
                     },
                     {
-                        "description": "f_hyper + k_we :: f_tab_mgmt",
+                        "description": "✴️ + k_[sd] :: f_volume_control",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "w",
+                                    "key_code": "d",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
+                                "to": [{ "key_code": "volume_increment" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "volume_decrement" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "🟡 + k_q :: f_prev_tab",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "q" },
                                 "to": [
                                     {
                                         "key_code": "tab",
@@ -285,73 +253,25 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "f_hyper + k_io :: f_mission_control",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "o",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "i",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "f_hyper + k_semicolon :: f_search_tabs (Chrome)",
+                        "description": "🟡 + k_w :: f_minimize_window",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
-                                        "bundle_identifiers": [
-                                            "com.google.Chrome"
-                                        ],
-                                        "type": "frontmost_application_if"
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
                                     }
                                 ],
-                                "from": {
-                                    "key_code": "semicolon",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
+                                "from": { "key_code": "w" },
                                 "to": [
                                     {
-                                        "key_code": "a",
-                                        "modifiers": ["left_command", "left_shift"]
+                                        "key_code": "e",
+                                        "modifiers": ["left_command", "left_control"]
                                     }
                                 ],
                                 "type": "basic"
@@ -359,8 +279,7 @@
                         ]
                     },
                     {
-                        "description": "f_win_mgmt + k_hjl :: f_mission_control",
-                        "enabled": false,
+                        "description": "🟡 + k_[hl] :: f_mission_control",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -392,46 +311,6 @@
                                     {
                                         "key_code": "right_arrow",
                                         "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "f_win_mgmt",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "j" },
-                                "to": [
-                                    {
-                                        "key_code": "up_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "f_win_mgmt + k_q :: f_prev_tab",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "f_win_mgmt",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "q" },
-                                "to": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": ["left_control", "left_shift"]
                                     }
                                 ],
                                 "type": "basic"
@@ -487,6 +366,23 @@
                             "to": [{ "key_code": "grave_accent_and_tilde" }]
                         }
                     ]
+                },
+                {
+                    "fn_function_keys": [
+                        {
+                            "from": { "key_code": "f5" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_down" }]
+                        },
+                        {
+                            "from": { "key_code": "f6" },
+                            "to": [{ "apple_vendor_keyboard_key_code": "brightness_up" }]
+                        }
+                    ],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 800,
+                        "vendor_id": 76
+                    }
                 }
             ],
             "fn_function_keys": [
