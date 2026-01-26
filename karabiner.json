@@ -276,7 +276,7 @@
                         ]
                     },
                     {
-                        "description": "🟡 + k_[hl] :: f_move_between_spaces",
+                        "description": "🟡 + k_[hlj] :: f_mission_control",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -307,6 +307,23 @@
                                 "to": [
                                     {
                                         "key_code": "right_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "j" },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
                                         "modifiers": ["left_control"]
                                     }
                                 ],
@@ -424,6 +441,23 @@
                                     {
                                         "key_code": "slash",
                                         "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_' :: f_right_click",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "pointing_button": "button2"
                                     }
                                 ],
                                 "type": "basic"
