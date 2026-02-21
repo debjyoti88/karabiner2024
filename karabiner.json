@@ -211,6 +211,7 @@
                     },
                     {
                         "description": "✴️ + k_f :: f_delete_word",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -228,28 +229,6 @@
                                     },
                                     { "key_code": "delete_or_backspace" }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_[io] :: f_brackets",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "i",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "open_bracket" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "o",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "key_code": "close_bracket" }],
                                 "type": "basic"
                             }
                         ]
@@ -455,11 +434,7 @@
                                     "key_code": "quote",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
-                                "to": [
-                                    {
-                                        "pointing_button": "button2"
-                                    }
-                                ],
+                                "to": [{ "pointing_button": "button2" }],
                                 "type": "basic"
                             }
                         ]
