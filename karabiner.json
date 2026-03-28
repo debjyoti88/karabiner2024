@@ -148,11 +148,11 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_tab :: f_select_text",
+                        "description": "✴️ + k_spacebar :: f_select_text",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "tab",
+                                    "key_code": "spacebar",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
@@ -161,7 +161,7 @@
                                         "modifiers": ["left_shift", "left_command", "left_control", "left_option"]
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "tab" }],
+                                "to_if_alone": [{ "key_code": "spacebar" }],
                                 "type": "basic"
                             }
                         ]
@@ -413,7 +413,7 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_h :: f_highlight_text",
+                        "description": "✴️ + k_z :: f_highlight_text",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -425,8 +425,8 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "h",
-                                    "modifiers": { "mandatory": ["left_command"] }
+                                    "key_code": "z",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
                                     {
