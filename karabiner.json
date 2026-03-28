@@ -413,7 +413,7 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_z :: f_highlight_text",
+                        "description": "✴️ + k_h :: f_highlight_text",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -425,8 +425,8 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "z",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["left_command"] }
                                 },
                                 "to": [
                                     {
