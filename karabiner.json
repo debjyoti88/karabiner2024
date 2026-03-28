@@ -111,6 +111,19 @@
                         ]
                     },
                     {
+                        "description": "✴️ + k_tab :: f_esc",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "✴️ + k_[hjkl] :: f_move_text_cursor",
                         "manipulators": [
                             {
