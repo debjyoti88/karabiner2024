@@ -162,11 +162,11 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_spacebar :: f_select_text",
+                        "description": "✴️ + k_cmd :: f_select_text",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "spacebar",
+                                    "key_code": "left_command",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
                                 "to": [
@@ -177,8 +177,7 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "spacebar",
-                                        "modifiers": ["left_shift", "left_command", "left_control", "left_option"]
+                                        "key_code": "left_command"
                                     }
                                 ],
                                 "type": "basic"
@@ -260,22 +259,7 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_' :: f_right_click",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "quote",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [{ "pointing_button": "button2" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️ + k_' :: f_double_quote",
-                        "enabled": false,
+                        "description": "✴️ + k_' :: f_start_of_line",
                         "manipulators": [
                             {
                                 "from": {
@@ -284,8 +268,26 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "quote",
-                                        "modifiers": ["left_shift"]
+                                        "key_code": "left_arrow",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_return :: f_end_of_line",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": ["left_command"]
                                     }
                                 ],
                                 "type": "basic"
