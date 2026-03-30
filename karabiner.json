@@ -112,6 +112,7 @@
                     },
                     {
                         "description": "✴️ + k_tab :: f_esc",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -174,7 +175,12 @@
                                         "modifiers": ["left_shift", "left_command", "left_control", "left_option"]
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "spacebar" }],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_shift", "left_command", "left_control", "left_option"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -255,6 +261,7 @@
                     },
                     {
                         "description": "✴️ + k_' :: f_right_click",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -426,7 +433,7 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_z :: f_highlight_text",
+                        "description": "✴️ + k_z :: f_highlight_text_preview",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -444,6 +451,32 @@
                                 "to": [
                                     {
                                         "key_code": "m",
+                                        "modifiers": ["left_command", "left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "⌘ + k_f :: f_annotate_text_preview",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Preview$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f",
                                         "modifiers": ["left_command", "left_control"]
                                     }
                                 ],
@@ -603,6 +636,18 @@
                 {
                     "from": { "key_code": "f6" },
                     "to": [{ "key_code": "illumination_increment" }]
+                },
+                {
+                    "from": { "key_code": "f10" },
+                    "to": [{ "consumer_key_code": "volume_decrement" }]
+                },
+                {
+                    "from": { "key_code": "f11" },
+                    "to": [{ "consumer_key_code": "volume_increment" }]
+                },
+                {
+                    "from": { "key_code": "f12" },
+                    "to": [{ "consumer_key_code": "mute" }]
                 }
             ],
             "name": "Default",
