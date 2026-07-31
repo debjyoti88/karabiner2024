@@ -29,7 +29,7 @@
                         ]
                     },
                     {
-                        "description": "⇥ :: (press and hold) 🟡 | (alone) Move to next tab",
+                        "description": "⇥ :: (press and hold) 🟡 | (alone) Escape",
                         "manipulators": [
                             {
                                 "from": { "key_code": "tab" },
@@ -49,12 +49,7 @@
                                         }
                                     }
                                 ],
-                                "to_if_alone": [
-                                    {
-                                        "key_code": "tab",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
                                 "type": "basic"
                             }
                         ]
@@ -81,6 +76,7 @@
                     },
                     {
                         "description": "✴️[,.] :: Undo/Redo",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -104,6 +100,37 @@
                                     {
                                         "key_code": "b",
                                         "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️[,.] :: Move to previous/next tab",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["left_control", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["left_control"]
                                     }
                                 ],
                                 "type": "basic"
@@ -288,6 +315,7 @@
                     },
                     {
                         "description": "✴️W :: Close window",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -324,6 +352,7 @@
                     },
                     {
                         "description": "⌘Z :: Escape",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -337,6 +366,7 @@
                     },
                     {
                         "description": "🟡[Q] :: Move to previous tab",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -351,6 +381,28 @@
                                     {
                                         "key_code": "tab",
                                         "modifiers": ["left_control", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "🟡[Q] :: Close window",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "q" },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": ["left_command", "left_shift"]
                                     }
                                 ],
                                 "type": "basic"
@@ -524,25 +576,6 @@
                                 "to": [
                                     {
                                         "key_code": "a",
-                                        "modifiers": ["left_command", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "✴️T :: ⇧⌘B",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "t",
                                         "modifiers": ["left_command", "left_shift"]
                                     }
                                 ],
