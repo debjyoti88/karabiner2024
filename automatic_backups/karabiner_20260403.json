@@ -29,7 +29,7 @@
                         ]
                     },
                     {
-                        "description": "k_tab :: 🟡 | (alone) f_next_tab",
+                        "description": "k_tab :: 🟡 | (alone) ⌘ TAB",
                         "manipulators": [
                             {
                                 "from": { "key_code": "tab" },
@@ -52,7 +52,7 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "tab",
-                                        "modifiers": ["left_control"]
+                                        "modifiers": ["left_command"]
                                     }
                                 ],
                                 "type": "basic"
@@ -80,21 +80,8 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_[,.] :: f_mission_control",
+                        "description": "✴️ + k_[,.] :: f_undo_redo",
                         "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "period",
-                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
                             {
                                 "from": {
                                     "key_code": "comma",
@@ -102,8 +89,38 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["left_control"]
+                                        "key_code": "b",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "⌘ + k_h :: f_null",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "vk_none"
                                     }
                                 ],
                                 "type": "basic"
@@ -148,7 +165,31 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_[qr] :: f_select_word",
+                        "description": "✴️ + k_spacebar :: f_select_text",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_shift", "left_command", "left_control", "left_option"]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": ["left_shift", "left_command", "left_control", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_[qr] :: f_select_prev_next_word",
                         "manipulators": [
                             {
                                 "from": {
@@ -224,16 +265,45 @@
                         ]
                     },
                     {
-                        "description": "✴️ + k_[sd] :: f_volume_control",
+                        "description": "✴️ + k_tab :: f_outdent",
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "d",
+                                    "key_code": "tab",
                                     "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
                                 },
-                                "to": [{ "key_code": "volume_increment" }],
+                                "to": [
+                                    {
+                                        "key_code": "tab",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_' :: f_double_quote",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "quote",
+                                        "modifiers": ["left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_[sd] :: f_volume_control",
+                        "manipulators": [
                             {
                                 "from": {
                                     "key_code": "s",
@@ -241,33 +311,19 @@
                                 },
                                 "to": [{ "key_code": "volume_decrement" }],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "🟡 + k_w :: f_minimize_window",
-                        "manipulators": [
+                            },
                             {
-                                "conditions": [
-                                    {
-                                        "name": "f_win_mgmt",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "w" },
-                                "to": [
-                                    {
-                                        "key_code": "e",
-                                        "modifiers": ["left_command", "left_control"]
-                                    }
-                                ],
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [{ "key_code": "volume_increment" }],
                                 "type": "basic"
                             }
                         ]
                     },
                     {
-                        "description": "🟡 + k_q :: f_prev_tab",
+                        "description": "🟡 + k_[qr] :: f_move_between_tabs",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -285,12 +341,7 @@
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "🟡 + k_t :: f_show_hide_bookmarks",
-                        "manipulators": [
+                            },
                             {
                                 "conditions": [
                                     {
@@ -299,11 +350,11 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "t" },
+                                "from": { "key_code": "r" },
                                 "to": [
                                     {
-                                        "key_code": "t",
-                                        "modifiers": ["left_command", "left_shift"]
+                                        "key_code": "tab",
+                                        "modifiers": ["left_control"]
                                     }
                                 ],
                                 "type": "basic"
@@ -311,7 +362,7 @@
                         ]
                     },
                     {
-                        "description": "🟡 + k_[hl] :: f_mission_control",
+                        "description": "🟡 + k_[hlj] :: f_mission_control",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -343,6 +394,196 @@
                                     {
                                         "key_code": "right_arrow",
                                         "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "j" },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": ["left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "🟡 + k_w :: f_minimize_window",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "f_win_mgmt",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "w" },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["left_command", "left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_g :: f_highlight_text_bear",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "net.shinyfrog.bear"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "h",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_g :: f_highlight_text_preview",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Preview$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "g",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "m",
+                                        "modifiers": ["left_command", "left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "⌘ + k_f :: f_annotate_text_preview",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.Preview$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": { "mandatory": ["left_command"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f",
+                                        "modifiers": ["left_command", "left_control"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_a :: f_⌘⇧A",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "a",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_t :: f_⌘⇧B",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "t",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "t",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_e :: f_⌘⇧F",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "e",
+                                        "modifiers": ["left_command", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "✴️ + k_/ :: f_⌥/",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": { "mandatory": ["left_shift", "left_command", "left_control", "left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "slash",
+                                        "modifiers": ["left_option"]
                                     }
                                 ],
                                 "type": "basic"
@@ -402,11 +643,11 @@
                 {
                     "fn_function_keys": [
                         {
-                            "from": { "key_code": "f5" },
+                            "from": { "key_code": "f1" },
                             "to": [{ "apple_vendor_keyboard_key_code": "brightness_down" }]
                         },
                         {
-                            "from": { "key_code": "f6" },
+                            "from": { "key_code": "f2" },
                             "to": [{ "apple_vendor_keyboard_key_code": "brightness_up" }]
                         }
                     ],
@@ -429,6 +670,18 @@
                 {
                     "from": { "key_code": "f6" },
                     "to": [{ "key_code": "illumination_increment" }]
+                },
+                {
+                    "from": { "key_code": "f10" },
+                    "to": [{ "consumer_key_code": "volume_decrement" }]
+                },
+                {
+                    "from": { "key_code": "f11" },
+                    "to": [{ "consumer_key_code": "volume_increment" }]
+                },
+                {
+                    "from": { "key_code": "f12" },
+                    "to": [{ "consumer_key_code": "mute" }]
                 }
             ],
             "name": "Default",
